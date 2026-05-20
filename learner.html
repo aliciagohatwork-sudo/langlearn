@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="LangLearn">
+<meta name="theme-color" content="#0f0f0f">
+<link rel="manifest" href="./manifest.json">
+<title>LangLearn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f0f0f;--surface:#1a1a1a;--surface2:#242424;
+  --border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.14);
+  --text:#f5f0e8;--text2:#9a9488;--text3:#5a5650;
+  --accent:#c9a96e;--accent-dim:rgba(201,169,110,0.12);--accent-dim2:rgba(201,169,110,0.22);
+  --success:#5a9e6f;--success-dim:rgba(90,158,111,0.12);
+  --r:14px;--r-sm:8px;
+  --safe-top:env(safe-area-inset-top,0px);
+  --safe-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;overscroll-behavior:none}
+body{display:flex;flex-direction:column;max-width:480px;margin:0 auto;min-height:100dvh}
+
+/* Header */
+.header{padding:calc(var(--safe-top) + 12px) 20px 12px;background:var(--bg);border-bottom:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.header-left{display:flex;align-items:center;gap:10px}
+.logo{font-family:'Noto Serif JP',serif;font-size:22px;color:var(--accent)}
+.header-title{font-size:15px;font-weight:500}
+.header-sub{font-size:11px;color:var(--text3);margin-top:1px}
+.progress-pill{background:var(--accent-dim);color:var(--accent);font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px;border:0.5px solid rgba(201,169,110,0.3);white-space:nowrap}
+
+/* Scroll */
+.scroll-area{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:20px 16px calc(24px + var(--safe-bottom))}
+
+/* Setup screen */
+.setup-screen{position:fixed;inset:0;background:var(--bg);z-index:200;overflow-y:auto;padding:calc(var(--safe-top)+24px) 24px calc(var(--safe-bottom)+24px)}
+.setup-logo{font-family:'Noto Serif JP',serif;font-size:48px;color:var(--accent);text-align:center;margin-bottom:8px}
+.setup-title{font-size:20px;font-weight:500;text-align:center;margin-bottom:4px}
+.setup-sub{font-size:13px;color:var(--text2);text-align:center;margin-bottom:28px;line-height:1.6}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:12px;color:var(--text3);margin-bottom:5px;font-weight:500}
+input[type=text]{width:100%;background:var(--surface2);border:0.5px solid var(--border2);border-radius:var(--r-sm);color:var(--text);padding:11px 14px;font-size:15px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.15s}
+input[type=text]:focus{border-color:var(--accent)}
+input[type=text]::placeholder{color:var(--text3)}
+.error-msg{font-size:12px;color:#c0544a;margin-top:6px;display:none}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:13px 20px;font-size:15px;font-weight:500;font-family:'DM Sans',sans-serif;border-radius:var(--r-sm);cursor:pointer;border:0.5px solid var(--border2);background:var(--surface2);color:var(--text2);transition:all 0.15s;width:100%}
+.btn:active{transform:scale(0.97)}
+.btn.accent{background:var(--accent);color:#0f0f0f;border-color:var(--accent)}
+.btn.accent:active{opacity:0.85}
+.btn.outline{background:transparent;border-color:var(--border2);color:var(--text2)}
+.btn svg{width:18px;height:18px;stroke-width:2;flex-shrink:0}
+.btn-sm{padding:9px 16px;font-size:13px}
+.btn-sm svg{width:15px;height:15px}
+
+/* Filter card */
+.filter-card{background:var(--surface);border:0.5px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:16px}
+.filter-row{margin-bottom:14px}
+.filter-row:last-child{margin-bottom:0}
+.filter-label{font-size:11px;font-weight:500;color:var(--text3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px}
+select{width:100%;background:var(--surface2);border:0.5px solid var(--border2);border-radius:var(--r-sm);color:var(--text);padding:10px 12px;font-size:14px;font-family:'DM Sans',sans-serif;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239a9488' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;outline:none}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12px;padding:6px 14px;border-radius:20px;border:0.5px solid var(--border2);background:var(--surface2);color:var(--text2);cursor:pointer;transition:all 0.15s;font-family:'DM Sans',sans-serif;user-select:none}
+.chip.on{background:var(--accent-dim2);color:var(--accent);border-color:rgba(201,169,110,0.4)}
+.pronun-toggle-row{display:flex;align-items:center;justify-content:space-between}
+.toggle-label{font-size:14px;color:var(--text)}
+.toggle{position:relative;width:44px;height:26px;flex-shrink:0}
+.toggle input{opacity:0;width:0;height:0}
+.toggle-track{position:absolute;inset:0;background:var(--surface2);border-radius:13px;border:0.5px solid var(--border2);cursor:pointer;transition:background 0.2s}
+.toggle input:checked + .toggle-track{background:var(--accent)}
+.toggle-thumb{position:absolute;top:3px;left:3px;width:18px;height:18px;background:#fff;border-radius:50%;transition:transform 0.2s;pointer-events:none}
+.toggle input:checked ~ .toggle-thumb{transform:translateX(18px)}
+
+/* Character card */
+.char-card{background:var(--surface);border:0.5px solid var(--border);border-radius:var(--r);padding:28px 24px;margin-bottom:16px;text-align:center;min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;position:relative;overflow:hidden}
+.char-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,169,110,0.06) 0%,transparent 70%);pointer-events:none}
+.char-main{font-family:'Noto Serif JP',serif;font-size:72px;line-height:1;color:var(--text);transition:opacity 0.2s}
+.char-badges{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:4px}
+.badge{font-size:11px;padding:2px 8px;border-radius:6px;background:var(--surface2);color:var(--text3);border:0.5px solid var(--border)}
+
+/* Pronunciation reveal */
+.pronun-reveal{margin-bottom:16px}
+.pronun-display{background:var(--surface);border:0.5px solid rgba(201,169,110,0.3);border-radius:var(--r-sm);padding:14px 20px;text-align:center;display:none}
+.pronun-display.show{display:block}
+.pronun-text{font-size:22px;color:var(--accent);font-weight:400;margin-bottom:4px}
+.notes-text{font-size:13px;color:var(--text2);line-height:1.6;margin-top:8px;border-top:0.5px solid var(--border);padding-top:8px;text-align:left}
+
+/* Progress bar */
+.progress-bar-wrap{height:3px;background:var(--surface2);border-radius:2px;margin-bottom:20px;overflow:hidden}
+.progress-bar{height:100%;background:var(--accent);border-radius:2px;transition:width 0.4s ease}
+
+/* Round complete */
+.round-complete{background:rgba(90,158,111,0.08);border:0.5px solid rgba(90,158,111,0.3);border-radius:var(--r);padding:24px;text-align:center;margin-bottom:16px;display:none}
+.round-complete.show{display:block}
+.round-icon{font-size:36px;margin-bottom:8px}
+.round-title{font-size:17px;font-weight:500;color:var(--success);margin-bottom:4px}
+.round-sub{font-size:13px;color:var(--text2);margin-bottom:16px}
+
+/* States */
+.screen{display:none}.screen.active{display:block}
+.empty{text-align:center;padding:40px 20px}
+.empty-icon{font-family:'Noto Serif JP',serif;font-size:48px;color:var(--text3);margin-bottom:10px}
+.empty-title{font-size:15px;font-weight:500;color:var(--text2);margin-bottom:4px}
+.empty-sub{font-size:13px;color:var(--text3)}
+
+/* Loading */
+.loading{display:flex;align-items:center;justify-content:center;padding:40px;color:var(--text3);font-size:13px;gap:8px}
+.spinner{width:18px;height:18px;border:2px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:spin 0.7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Toast */
+.toast{position:fixed;bottom:calc(24px + var(--safe-bottom));left:50%;transform:translateX(-50%) translateY(20px);background:var(--surface);border:0.5px solid var(--border2);color:var(--text);font-size:13px;padding:10px 20px;border-radius:30px;white-space:nowrap;opacity:0;transition:all 0.25s;z-index:100;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* Card flip animation */
+@keyframes fadeSlideIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.char-card.animate{animation:fadeSlideIn 0.3s ease}
+</style>
+</head>
+<body>
+
+<!-- Setup Screen -->
+<div class="setup-screen" id="setup-screen">
+  <div class="setup-logo">語</div>
+  <h1 class="setup-title" style="font-size:20px;font-weight:500;text-align:center;margin-bottom:4px">Connect to database</h1>
+  <p class="setup-sub">Enter your Supabase credentials to start learning. You only need to do this once.</p>
+  <div class="field"><label>Supabase Project URL</label><input type="text" id="setup-url" placeholder="https://xxxxxxxxxxxx.supabase.co"></div>
+  <div class="field"><label>Supabase Anon Key</label><input type="text" id="setup-key" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."></div>
+  <div class="error-msg" id="setup-error">Could not connect. Please check your credentials.</div>
+  <div style="margin-top:8px">
+    <button class="btn accent" onclick="connectSupabase()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Connect & Start
+    </button>
+  </div>
+  <div style="text-align:center;font-size:12px;color:var(--text3);margin:16px 0 12px">Already connected?</div>
+  <button class="btn outline" onclick="loadFromStorage()">Load saved credentials</button>
+</div>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-left">
+    <div class="logo">語</div>
+    <div>
+      <div class="header-title">LangLearn</div>
+      <div class="header-sub">Practice mode</div>
+    </div>
+  </div>
+  <span class="progress-pill" id="progress-pill" style="display:none">0 / 0</span>
+</div>
+
+<!-- Main scroll area -->
+<div class="scroll-area">
+
+  <!-- Screen: Filter selection -->
+  <div class="screen active" id="screen-filter">
+    <div class="filter-card">
+      <div class="filter-row">
+        <div class="filter-label">Subject</div>
+        <select id="f-subject" onchange="onSubjectChange()">
+          <option value="">Loading…</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <div class="filter-label">Level</div>
+        <div class="chips" id="level-chips"><span style="font-size:12px;color:var(--text3)">Select a subject first</span></div>
+      </div>
+      <div class="filter-row">
+        <div class="pronun-toggle-row">
+          <span class="toggle-label">Show pronunciation</span>
+          <label class="toggle">
+            <input type="checkbox" id="show-pronun" checked>
+            <div class="toggle-track"></div>
+            <div class="toggle-thumb"></div>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div id="filter-status" style="font-size:13px;color:var(--text3);text-align:center;margin-bottom:16px"></div>
+
+    <button class="btn accent" id="start-btn" onclick="startSession()" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Start practice
+    </button>
+  </div>
+
+  <!-- Screen: Practice -->
+  <div class="screen" id="screen-practice">
+    <div class="progress-bar-wrap"><div class="progress-bar" id="progress-bar" style="width:0%"></div></div>
+
+    <!-- Round complete banner -->
+    <div class="round-complete" id="round-complete">
+      <div class="round-icon">🎉</div>
+      <div class="round-title">Round complete!</div>
+      <div class="round-sub" id="round-sub">You've seen all characters. Starting a new round…</div>
+      <button class="btn accent" onclick="nextRound()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+        New round
+      </button>
+    </div>
+
+    <!-- Character card -->
+    <div class="char-card" id="char-card">
+      <div class="char-main" id="char-main">—</div>
+      <div class="char-badges" id="char-badges"></div>
+    </div>
+
+    <!-- Pronunciation reveal -->
+    <div class="pronun-reveal" id="pronun-reveal-wrap">
+      <div class="pronun-display" id="pronun-display">
+        <div class="pronun-text" id="pronun-text"></div>
+        <div class="notes-text" id="notes-text" style="display:none"></div>
+      </div>
+      <button class="btn outline btn-sm" id="reveal-btn" onclick="revealPronun()" style="margin-top:8px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Show pronunciation
+      </button>
+    </div>
+
+    <!-- Next / Back buttons -->
+    <div style="display:flex;gap:10px;margin-bottom:12px">
+      <button class="btn outline" onclick="goBack()" style="width:auto;padding:13px 18px" id="back-btn" title="Back to filters">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </button>
+      <button class="btn accent" id="next-btn" onclick="nextCard()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Next
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let SUPA_URL = '', SUPA_KEY = '';
+let allEntries = [];
+let deck = [];
+let deckIndex = 0;
+let selectedLevels = new Set();
+let currentEntry = null;
+let totalSeen = 0;
+
+/* ── Supabase ── */
+async function supa(path) {
+  const res = await fetch(SUPA_URL + '/rest/v1/' + path, {
+    headers: { 'apikey': SUPA_KEY, 'Authorization': 'Bearer ' + SUPA_KEY }
+  });
+  if (!res.ok) throw new Error(await res.text());
+  return res.json();
+}
+
+/* ── Setup ── */
+async function connectSupabase() {
+  const url = document.getElementById('setup-url').value.trim().replace(/\/$/, '');
+  const key = document.getElementById('setup-key').value.trim();
+  const err = document.getElementById('setup-error');
+  err.style.display = 'none';
+  if (!url || !key) { err.textContent = 'Please enter both fields.'; err.style.display = 'block'; return; }
+  SUPA_URL = url; SUPA_KEY = key;
+  try {
+    allEntries = await supa('entries?select=*&order=created_at.desc');
+    localStorage.setItem('supa_url', url);
+    localStorage.setItem('supa_key', key);
+    document.getElementById('setup-screen').style.display = 'none';
+    init();
+  } catch(e) {
+    err.textContent = 'Could not connect. Please check your credentials.';
+    err.style.display = 'block';
+  }
+}
+
+function loadFromStorage() {
+  const url = localStorage.getItem('supa_url');
+  const key = localStorage.getItem('supa_key');
+  if (url && key) {
+    document.getElementById('setup-url').value = url;
+    document.getElementById('setup-key').value = key;
+    connectSupabase();
+  } else { showToast('No saved credentials found.'); }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js');
+  const url = localStorage.getItem('supa_url');
+  const key = localStorage.getItem('supa_key');
+  if (url && key) { SUPA_URL = url; SUPA_KEY = key; document.getElementById('setup-screen').style.display = 'none'; init(); }
+});
+
+/* ── Init ── */
+async function init() {
+  try {
+    allEntries = await supa('entries?select=*&order=created_at.desc');
+    buildSubjectDropdown();
+  } catch(e) {
+    showToast('Connection error. Check credentials.');
+  }
+}
+
+function buildSubjectDropdown() {
+  const subjects = [...new Set(allEntries.map(e => e.subject).filter(Boolean))].sort();
+  const sel = document.getElementById('f-subject');
+  sel.innerHTML = `<option value="">Select a subject…</option>` +
+    subjects.map(s => `<option value="${esc(s)}">${esc(s)}</option>`).join('');
+  updateStartButton();
+}
+
+function onSubjectChange() {
+  selectedLevels.clear();
+  const subj = document.getElementById('f-subject').value;
+  const levels = [...new Set(allEntries.filter(e => e.subject === subj).map(e => e.level).filter(Boolean))].sort();
+  const wrap = document.getElementById('level-chips');
+  if (!subj) { wrap.innerHTML = '<span style="font-size:12px;color:var(--text3)">Select a subject first</span>'; updateStartButton(); return; }
+  if (!levels.length) { wrap.innerHTML = '<span style="font-size:12px;color:var(--text3)">No levels found</span>'; updateStartButton(); return; }
+  levels.forEach(l => selectedLevels.add(l));
+  renderLevelChips(levels);
+  updateStartButton();
+}
+
+function renderLevelChips(levels) {
+  const wrap = document.getElementById('level-chips');
+  wrap.innerHTML = ['All', ...levels].map(l => {
+    const val = l === 'All' ? 'all' : l;
+    const on = l === 'All' ? selectedLevels.size === levels.length : selectedLevels.has(l);
+    return `<span class="chip${on ? ' on' : ''}" onclick="toggleLevel('${esc(val)}')">${esc(l)}</span>`;
+  }).join('');
+}
+
+function toggleLevel(val) {
+  const subj = document.getElementById('f-subject').value;
+  const levels = [...new Set(allEntries.filter(e => e.subject === subj).map(e => e.level).filter(Boolean))].sort();
+  if (val === 'all') {
+    if (selectedLevels.size === levels.length) selectedLevels.clear();
+    else levels.forEach(l => selectedLevels.add(l));
+  } else {
+    selectedLevels.has(val) ? selectedLevels.delete(val) : selectedLevels.add(val);
+  }
+  renderLevelChips(levels);
+  updateStartButton();
+}
+
+function updateStartButton() {
+  const subj = document.getElementById('f-subject').value;
+  const count = getFilteredEntries().length;
+  const btn = document.getElementById('start-btn');
+  const status = document.getElementById('filter-status');
+  btn.disabled = !subj || count === 0;
+  status.textContent = subj ? (count === 0 ? 'No characters found for this selection.' : `${count} character${count===1?'':'s'} ready to practise`) : '';
+}
+
+function getFilteredEntries() {
+  const subj = document.getElementById('f-subject').value;
+  return allEntries.filter(e => {
+    if (e.subject !== subj) return false;
+    if (selectedLevels.size > 0 && !selectedLevels.has(e.level)) return false;
+    return true;
+  });
+}
+
+/* ── Session ── */
+function startSession() {
+  const filtered = getFilteredEntries();
+  deck = shuffle([...filtered]);
+  deckIndex = 0;
+  totalSeen = 0;
+  showScreen('screen-practice');
+  document.getElementById('progress-pill').style.display = 'block';
+  document.getElementById('round-complete').classList.remove('show');
+  showCard();
+}
+
+function showCard() {
+  if (deckIndex >= deck.length) {
+    showRoundComplete();
+    return;
+  }
+  currentEntry = deck[deckIndex];
+  const showP = document.getElementById('show-pronun').checked;
+
+  // Character card
+  const card = document.getElementById('char-card');
+  card.classList.remove('animate');
+  void card.offsetWidth;
+  card.classList.add('animate');
+  document.getElementById('char-main').textContent = currentEntry.character;
+  document.getElementById('char-badges').innerHTML = [currentEntry.subject, currentEntry.level, currentEntry.lesson]
+    .filter(Boolean).map(b => `<span class="badge">${esc(b)}</span>`).join('');
+
+  // Pronunciation area
+  const display = document.getElementById('pronun-display');
+  const revealBtn = document.getElementById('reveal-btn');
+  document.getElementById('pronun-text').textContent = currentEntry.pronunciation || '';
+  const notesEl = document.getElementById('notes-text');
+  if (currentEntry.notes) { notesEl.textContent = currentEntry.notes; notesEl.style.display = 'block'; }
+  else { notesEl.style.display = 'none'; }
+
+  if (!currentEntry.pronunciation) {
+    document.getElementById('pronun-reveal-wrap').style.display = 'none';
+  } else if (showP) {
+    document.getElementById('pronun-reveal-wrap').style.display = 'block';
+    display.classList.add('show');
+    revealBtn.style.display = 'none';
+  } else {
+    document.getElementById('pronun-reveal-wrap').style.display = 'block';
+    display.classList.remove('show');
+    revealBtn.style.display = 'flex';
+    revealBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="15" height="15" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Show pronunciation`;
+  }
+
+  updateProgress();
+}
+
+function revealPronun() {
+  document.getElementById('pronun-display').classList.add('show');
+  document.getElementById('reveal-btn').style.display = 'none';
+}
+
+function nextCard() {
+  deckIndex++;
+  totalSeen++;
+  document.getElementById('round-complete').classList.remove('show');
+  showCard();
+}
+
+function showRoundComplete() {
+  const count = deck.length;
+  document.getElementById('round-sub').textContent = `You've seen all ${count} character${count===1?'':'s'} in this set. Start a new round to shuffle again!`;
+  document.getElementById('round-complete').classList.add('show');
+  document.getElementById('char-card').style.display = 'none';
+  document.getElementById('pronun-reveal-wrap').style.display = 'none';
+  document.getElementById('next-btn').style.display = 'none';
+  document.getElementById('progress-pill').textContent = `${count} / ${count} ✓`;
+  updateProgressBar(1);
+}
+
+function nextRound() {
+  deck = shuffle([...deck]);
+  deckIndex = 0;
+  document.getElementById('round-complete').classList.remove('show');
+  document.getElementById('char-card').style.display = 'flex';
+  document.getElementById('next-btn').style.display = 'flex';
+  showCard();
+}
+
+function goBack() {
+  showScreen('screen-filter');
+  document.getElementById('progress-pill').style.display = 'none';
+  document.getElementById('char-card').style.display = 'flex';
+  document.getElementById('next-btn').style.display = 'flex';
+  document.getElementById('round-complete').classList.remove('show');
+}
+
+function updateProgress() {
+  const total = deck.length;
+  const seen = deckIndex;
+  document.getElementById('progress-pill').textContent = `${seen} / ${total}`;
+  updateProgressBar(total > 0 ? seen / total : 0);
+}
+
+function updateProgressBar(ratio) {
+  document.getElementById('progress-bar').style.width = Math.round(ratio * 100) + '%';
+}
+
+/* ── Helpers ── */
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function esc(s = '') { return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+</script>
+</body>
+</html>
