@@ -1,7 +1,7 @@
 {
-  "name": "Language Learning Manager",
-  "short_name": "LangLearn",
-  "description": "Manage vocabulary by subject, level, and lesson",
+  "name": "Chinese Is Fun",
+  "short_name": "Chinese Is Fun",
+  "description": "Manage Chinese vocabulary by subject, level, and lesson",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0f0f0f",

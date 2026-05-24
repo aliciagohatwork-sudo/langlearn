@@ -5,70 +5,66 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="LangLearn">
+<meta name="apple-mobile-web-app-title" content="Chinese Is Fun">
 <meta name="theme-color" content="#0f0f0f">
 <link rel="manifest" href="./manifest.json">
-<title>Language Learning Manager</title>
+<title>Chinese Is Fun</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0f0f0f;
-  --surface: #1a1a1a;
-  --surface2: #242424;
-  --border: rgba(255,255,255,0.08);
-  --border2: rgba(255,255,255,0.14);
-  --text: #f5f0e8;
-  --text2: #9a9488;
-  --text3: #5a5650;
-  --accent: #c9a96e;
-  --accent-dim: rgba(201,169,110,0.12);
-  --accent-dim2: rgba(201,169,110,0.22);
-  --danger: #c0544a;
-  --danger-dim: rgba(192,84,74,0.12);
-  --success: #5a9e6f;
-  --r: 14px;
-  --r-sm: 8px;
-  --safe-top: env(safe-area-inset-top, 0px);
-  --safe-bottom: env(safe-area-inset-bottom, 0px);
+--bg: #0f0f0f;
+--surface: #1a1a1a;
+--surface2: #242424;
+--border: rgba(255,255,255,0.08);
+--border2: rgba(255,255,255,0.14);
+--text: #f5f0e8;
+--text2: #9a9488;
+--text3: #5a5650;
+--accent: #c9a96e;
+--accent-dim: rgba(201,169,110,0.12);
+--accent-dim2: rgba(201,169,110,0.22);
+--danger: #c0544a;
+--danger-dim: rgba(192,84,74,0.12);
+--success: #5a9e6f;
+--r: 14px;
+--r-sm: 8px;
+--safe-top: env(safe-area-inset-top, 0px);
+--safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;overscroll-behavior:none}
 body{display:flex;flex-direction:column;max-width:480px;margin:0 auto}
-
 /* Header */
 .header{
-  padding:calc(var(--safe-top) + 12px) 20px 12px;
-  background:var(--bg);
-  border-bottom:0.5px solid var(--border);
-  display:flex;align-items:center;justify-content:space-between;
-  position:sticky;top:0;z-index:50;
+padding:calc(var(--safe-top) + 12px) 20px 12px;
+background:var(--bg);
+border-bottom:0.5px solid var(--border);
+display:flex;align-items:center;justify-content:space-between;
+position:sticky;top:0;z-index:50;
 }
 .header-left{display:flex;align-items:center;gap:10px}
 .logo{font-family:'Noto Serif JP',serif;font-size:22px;color:var(--accent)}
 .header-title{font-size:15px;font-weight:500;color:var(--text)}
 .header-sub{font-size:11px;color:var(--text3);margin-top:1px}
 .count-pill{background:var(--accent-dim);color:var(--accent);font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px;border:0.5px solid rgba(201,169,110,0.3)}
-
 /* Bottom nav */
 .bottom-nav{
-  position:fixed;bottom:0;left:50%;transform:translateX(-50%);
-  width:100%;max-width:480px;
-  background:rgba(15,15,15,0.95);
-  backdrop-filter:blur(12px);
-  border-top:0.5px solid var(--border);
-  display:flex;
-  padding-bottom:var(--safe-bottom);
-  z-index:50;
+position:fixed;bottom:0;left:50%;transform:translateX(-50%);
+width:100%;max-width:480px;
+background:rgba(15,15,15,0.95);
+backdrop-filter:blur(12px);
+border-top:0.5px solid var(--border);
+display:flex;
+padding-bottom:var(--safe-bottom);
+z-index:50;
 }
 .nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 0;border:none;background:none;color:var(--text3);font-size:10px;font-family:'DM Sans',sans-serif;font-weight:500;cursor:pointer;letter-spacing:0.04em;transition:color 0.15s}
 .nav-btn svg{width:22px;height:22px;stroke-width:1.5}
 .nav-btn.active{color:var(--accent)}
-
 /* Scroll area */
 .scroll-area{flex:1;overflow-y:auto;padding:16px 16px calc(80px + var(--safe-bottom));-webkit-overflow-scrolling:touch}
 .panel{display:none}.panel.active{display:block}
-
 /* Filter bar */
 .filter-card{background:var(--surface);border:0.5px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:12px}
 .filter-row{margin-bottom:12px}
@@ -86,7 +82,6 @@ select{width:100%;background:var(--surface2);border:0.5px solid var(--border2);b
 .toggle input:checked + .toggle-track{background:var(--accent)}
 .toggle-thumb{position:absolute;top:3px;left:3px;width:18px;height:18px;background:#fff;border-radius:50%;transition:transform 0.2s;pointer-events:none}
 .toggle input:checked ~ .toggle-thumb{transform:translateX(18px)}
-
 /* Entry cards */
 .entry-card{background:var(--surface);border:0.5px solid var(--border);border-radius:var(--r);padding:14px 16px;margin-bottom:10px;transition:border-color 0.15s}
 .entry-card.editing{border-color:var(--accent);background:var(--surface2)}
@@ -96,7 +91,6 @@ select{width:100%;background:var(--surface2);border:0.5px solid var(--border2);b
 .badge{font-size:11px;padding:2px 8px;border-radius:6px;background:var(--surface2);color:var(--text3);border:0.5px solid var(--border)}
 .notes-text{font-size:13px;color:var(--text2);line-height:1.6;margin-top:6px;border-top:0.5px solid var(--border);padding-top:8px}
 .card-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:10px}
-
 /* Buttons */
 .btn{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;font-size:13px;font-weight:500;font-family:'DM Sans',sans-serif;border-radius:var(--r-sm);cursor:pointer;border:0.5px solid var(--border2);background:var(--surface2);color:var(--text2);transition:all 0.15s;letter-spacing:0.01em}
 .btn:active{transform:scale(0.97)}
@@ -106,7 +100,6 @@ select{width:100%;background:var(--surface2);border:0.5px solid var(--border2);b
 .btn.ghost-danger:active{background:var(--danger-dim)}
 .btn.full{width:100%;justify-content:center;padding:13px}
 .btn svg{width:15px;height:15px;stroke-width:2}
-
 /* Form */
 .form-section{margin-bottom:20px}
 .section-title{font-size:11px;font-weight:500;color:var(--text3);letter-spacing:0.07em;text-transform:uppercase;margin-bottom:10px}
@@ -116,36 +109,30 @@ input[type=text],textarea{width:100%;background:var(--surface2);border:0.5px sol
 input[type=text]:focus,textarea:focus{border-color:var(--accent)}
 textarea{resize:none;height:80px;line-height:1.6}
 input[type=text]::placeholder,textarea::placeholder{color:var(--text3)}
-
 /* Empty state */
 .empty{text-align:center;padding:50px 20px}
 .empty-icon{font-family:'Noto Serif JP',serif;font-size:52px;color:var(--text3);margin-bottom:12px}
 .empty-title{font-size:15px;font-weight:500;color:var(--text2);margin-bottom:4px}
 .empty-sub{font-size:13px;color:var(--text3)}
-
 /* Toast */
 .toast{position:fixed;bottom:calc(80px + var(--safe-bottom) + 12px);left:50%;transform:translateX(-50%) translateY(20px);background:var(--surface);border:0.5px solid var(--border2);color:var(--text);font-size:13px;padding:10px 20px;border-radius:30px;white-space:nowrap;opacity:0;transition:all 0.25s;z-index:100;pointer-events:none}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
 /* Success banner */
 .success-banner{display:none;align-items:center;gap:10px;background:rgba(90,158,111,0.12);border:0.5px solid rgba(90,158,111,0.35);border-radius:var(--r-sm);padding:12px 16px;margin-bottom:16px}
 .success-banner.show{display:flex}
 .success-banner svg{width:18px;height:18px;stroke:var(--success);flex-shrink:0}
 .success-banner span{font-size:14px;color:var(--success);font-weight:500}
-
 /* Duplicate warning */
 .dup-warning{display:none;align-items:center;gap:8px;background:rgba(192,84,74,0.10);border:0.5px solid rgba(192,84,74,0.3);border-radius:var(--r-sm);padding:10px 14px;margin-bottom:12px}
 .dup-warning.show{display:flex}
 .dup-warning svg{width:16px;height:16px;stroke:var(--danger);flex-shrink:0}
 .dup-warning span{font-size:13px;color:var(--danger)}
-
 /* Shuffle row */
 .shuffle-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
 .result-count{font-size:12px;color:var(--text3)}
 .shuffle-btn{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--accent);background:var(--accent-dim);border:0.5px solid rgba(201,169,110,0.25);border-radius:20px;padding:5px 12px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;transition:background 0.15s}
 .shuffle-btn:active{opacity:0.7}
 .shuffle-btn svg{width:13px;height:13px;stroke-width:2.5}
-
 /* Setup screen */
 .setup-screen{position:fixed;inset:0;background:var(--bg);z-index:200;overflow-y:auto;padding:calc(var(--safe-top) + 24px) 24px calc(var(--safe-bottom) + 24px)}
 .setup-logo{font-family:'Noto Serif JP',serif;font-size:48px;color:var(--accent);text-align:center;margin-bottom:8px}
@@ -157,7 +144,6 @@ input[type=text]::placeholder,textarea::placeholder{color:var(--text3)}
 .step-desc code{font-family:monospace;background:var(--surface2);padding:2px 6px;border-radius:4px;color:var(--accent);font-size:12px}
 .setup-divider{text-align:center;font-size:12px;color:var(--text3);margin:20px 0 16px}
 .error-msg{font-size:12px;color:var(--danger);margin-top:6px;display:none}
-
 /* Loading */
 .loading{display:flex;align-items:center;justify-content:center;padding:40px;color:var(--text3);font-size:13px;gap:8px}
 .spinner{width:18px;height:18px;border:2px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:spin 0.7s linear infinite}
@@ -168,165 +154,160 @@ input[type=text]::placeholder,textarea::placeholder{color:var(--text3)}
 
 <!-- Setup Screen -->
 <div class="setup-screen" id="setup-screen">
-  <div class="setup-logo">語</div>
-  <h1 class="setup-title">Connect to Supabase</h1>
-  <p class="setup-sub">One-time setup to store your vocabulary in the cloud — synced across all your devices.</p>
-
-  <div class="step">
-    <div class="step-num">Step 1</div>
-    <div class="step-desc">Go to <strong>supabase.com</strong>, sign up for free, and create a new project.</div>
-  </div>
-
-  <div class="step">
-    <div class="step-num">Step 2</div>
-    <div class="step-desc">In your project, go to <strong>SQL Editor</strong> and run this query to create the table:</div>
-    <div style="background:var(--surface2);border-radius:var(--r-sm);padding:12px;font-family:monospace;font-size:11px;color:var(--accent);line-height:1.7;border:0.5px solid var(--border2);word-break:break-all">
-      create table entries (<br>
-      &nbsp;&nbsp;id uuid default gen_random_uuid() primary key,<br>
-      &nbsp;&nbsp;subject text not null,<br>
-      &nbsp;&nbsp;level text not null,<br>
-      &nbsp;&nbsp;lesson text not null,<br>
-      &nbsp;&nbsp;character text not null,<br>
-      &nbsp;&nbsp;pronunciation text,<br>
-      &nbsp;&nbsp;notes text,<br>
-      &nbsp;&nbsp;created_at timestamptz default now()<br>
-      );
-    </div>
-  </div>
-
-  <div class="step">
-    <div class="step-num">Step 3</div>
-    <div class="step-desc">Go to <strong>Project Settings → API</strong> and copy your <code>Project URL</code> and <code>anon public</code> key below.</div>
-  </div>
-
-  <div class="field" style="margin-bottom:10px">
-    <label>Supabase Project URL</label>
-    <input type="text" id="setup-url" placeholder="https://xxxxxxxxxxxx.supabase.co">
-  </div>
-  <div class="field" style="margin-bottom:16px">
-    <label>Supabase Anon Key</label>
-    <input type="text" id="setup-key" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...">
-    <div class="error-msg" id="setup-error">Could not connect. Please check your URL and key.</div>
-  </div>
-  <button class="btn accent full" onclick="connectSupabase()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    Connect & Continue
-  </button>
-
-  <div class="setup-divider">Already connected?</div>
-  <button class="btn full" onclick="loadFromStorage()">Load saved credentials</button>
+<div class="setup-logo">語</div>
+<h1 class="setup-title">Connect to Supabase</h1>
+<p class="setup-sub">One-time setup to store your vocabulary in the cloud — synced across all your devices.</p>
+<div class="step">
+<div class="step-num">Step 1</div>
+<div class="step-desc">Go to <strong>supabase.com</strong>, sign up for free, and create a new project.</div>
+</div>
+<div class="step">
+<div class="step-num">Step 2</div>
+<div class="step-desc">In your project, go to <strong>SQL Editor</strong> and run this query to create the table:</div>
+<div style="background:var(--surface2);border-radius:var(--r-sm);padding:12px;font-family:monospace;font-size:11px;color:var(--accent);line-height:1.7;border:0.5px solid var(--border2);word-break:break-all">
+create table entries (<br>
+&nbsp;&nbsp;id uuid default gen_random_uuid() primary key,<br>
+&nbsp;&nbsp;subject text not null,<br>
+&nbsp;&nbsp;level text not null,<br>
+&nbsp;&nbsp;lesson text not null,<br>
+&nbsp;&nbsp;character text not null,<br>
+&nbsp;&nbsp;pronunciation text,<br>
+&nbsp;&nbsp;notes text,<br>
+&nbsp;&nbsp;created_at timestamptz default now()<br>
+);
+</div>
+</div>
+<div class="step">
+<div class="step-num">Step 3</div>
+<div class="step-desc">Go to <strong>Project Settings → API</strong> and copy your <code>Project URL</code> and <code>anon public</code> key below.</div>
+</div>
+<div class="field" style="margin-bottom:10px">
+<label>Supabase Project URL</label>
+<input type="text" id="setup-url" placeholder="https://xxxxxxxxxxxx.supabase.co">
+</div>
+<div class="field" style="margin-bottom:16px">
+<label>Supabase Anon Key</label>
+<input type="text" id="setup-key" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...">
+<div class="error-msg" id="setup-error">Could not connect. Please check your URL and key.</div>
+</div>
+<button class="btn accent full" onclick="connectSupabase()">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+Connect & Continue
+</button>
+<div class="setup-divider">Already connected?</div>
+<button class="btn full" onclick="loadFromStorage()">Load saved credentials</button>
 </div>
 
 <!-- App Header -->
 <div class="header">
-  <div class="header-left">
-    <div class="logo">語</div>
-    <div>
-      <div class="header-title">LangLearn</div>
-      <div class="header-sub">Vocabulary Manager</div>
-    </div>
-  </div>
-  <span class="count-pill" id="count-pill">0 entries</span>
+<div class="header-left">
+<div class="logo">語</div>
+<div>
+<div class="header-title">Chinese Is Fun</div>
+<div class="header-sub">Vocabulary Manager</div>
+</div>
+</div>
+<span class="count-pill" id="count-pill">0 entries</span>
 </div>
 
 <!-- Scroll Area -->
 <div class="scroll-area">
 
-  <!-- Browse Panel -->
-  <div class="panel active" id="panel-browse">
-    <div class="filter-card">
-      <div class="filter-row">
-        <div class="filter-label">Subject</div>
-        <select id="f-subject" onchange="applyFilters()">
-          <option value="all">All subjects</option>
-        </select>
-      </div>
-      <div class="filter-row">
-        <div class="filter-label">Level</div>
-        <div class="chips" id="level-chips"><span style="font-size:12px;color:var(--text3)">Loading…</span></div>
-      </div>
-      <div class="filter-row">
-        <div class="pronun-toggle">
-          <span class="toggle-label">Show pronunciation</span>
-          <label class="toggle">
-            <input type="checkbox" id="show-pronun" onchange="applyFilters()">
-            <div class="toggle-track"></div>
-            <div class="toggle-thumb"></div>
-          </label>
-        </div>
-      </div>
-    </div>
-    <div class="shuffle-row">
-      <span class="result-count" id="result-count"></span>
-      <button class="shuffle-btn" onclick="shuffleAndRender()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
-        Shuffle
-      </button>
-    </div>
-    <div id="results-list"><div class="loading"><div class="spinner"></div> Loading entries…</div></div>
-  </div>
+<!-- Browse Panel -->
+<div class="panel active" id="panel-browse">
+<div class="filter-card">
+<div class="filter-row">
+<div class="filter-label">Subject</div>
+<select id="f-subject" onchange="applyFilters()">
+<option value="all">All subjects</option>
+</select>
+</div>
+<div class="filter-row">
+<div class="filter-label">Level</div>
+<div class="chips" id="level-chips"><span style="font-size:12px;color:var(--text3)">Loading…</span></div>
+</div>
+<div class="filter-row">
+<div class="pronun-toggle">
+<span class="toggle-label">Show pronunciation</span>
+<label class="toggle">
+<input type="checkbox" id="show-pronun" onchange="applyFilters()">
+<div class="toggle-track"></div>
+<div class="toggle-thumb"></div>
+</label>
+</div>
+</div>
+</div>
+<div class="shuffle-row">
+<span class="result-count" id="result-count"></span>
+<button class="shuffle-btn" onclick="shuffleAndRender()">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+Shuffle
+</button>
+</div>
+<div id="results-list"><div class="loading"><div class="spinner"></div> Loading entries…</div></div>
+</div>
 
-  <!-- Add Panel -->
-  <div class="panel" id="panel-add">
-    <div class="success-banner" id="add-success">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-      <span>New character added!</span>
-    </div>
-    <div class="dup-warning" id="dup-warning">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      <span id="dup-warning-text">This character already exists.</span>
-    </div>
-    <div class="form-section">
-      <div class="section-title">Entry details</div>
-      <div class="field"><label>Subject *</label><input type="text" id="a-subject" placeholder="e.g. Mandarin, Japanese"></div>
-      <div class="field"><label>Level *</label><input type="text" id="a-level" placeholder="e.g. Beginner, HSK1, N5"></div>
-      <div class="field"><label>Lesson *</label><input type="text" id="a-lesson" placeholder="e.g. Lesson 3, Chapter 1"></div>
-      <div class="field"><label>Character *</label><input type="text" id="a-char" placeholder="e.g. 你好, こんにちは"></div>
-      <div class="field"><label>Pronunciation</label><input type="text" id="a-pronun" placeholder="e.g. nǐ hǎo, konnichiwa"></div>
-      <div class="field"><label>Notes (optional)</label><textarea id="a-notes" placeholder="Meaning, usage, example sentences…"></textarea></div>
-    </div>
-    <button class="btn accent full" onclick="addEntry()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12h14"/></svg>
-      Save Entry
-    </button>
-    <button class="btn full" style="margin-top:8px" onclick="clearForm()">Clear form</button>
-  </div>
+<!-- Add Panel -->
+<div class="panel" id="panel-add">
+<div class="success-banner" id="add-success">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+<span>New character added!</span>
+</div>
+<div class="dup-warning" id="dup-warning">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+<span id="dup-warning-text">This character already exists.</span>
+</div>
+<div class="form-section">
+<div class="section-title">Entry details</div>
+<div class="field"><label>Subject *</label><input type="text" id="a-subject" placeholder="e.g. Mandarin, Japanese"></div>
+<div class="field"><label>Level *</label><input type="text" id="a-level" placeholder="e.g. Beginner, HSK1, N5"></div>
+<div class="field"><label>Lesson *</label><input type="text" id="a-lesson" placeholder="e.g. Lesson 3, Chapter 1"></div>
+<div class="field"><label>Character *</label><input type="text" id="a-char" placeholder="e.g. 你好, こんにちは"></div>
+<div class="field"><label>Pronunciation</label><input type="text" id="a-pronun" placeholder="e.g. nǐ hǎo, konnichiwa"></div>
+<div class="field"><label>Notes (optional)</label><textarea id="a-notes" placeholder="Meaning, usage, example sentences…"></textarea></div>
+</div>
+<button class="btn accent full" onclick="addEntry()">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12h14"/></svg>
+Save Entry
+</button>
+<button class="btn full" style="margin-top:8px" onclick="clearForm()">Clear form</button>
+</div>
 
-  <!-- Settings Panel -->
-  <div class="panel" id="panel-settings">
-    <div class="form-section">
-      <div class="section-title">Supabase connection</div>
-      <div class="field"><label>Project URL</label><input type="text" id="s-url" placeholder="https://xxxxxxxxxxxx.supabase.co"></div>
-      <div class="field"><label>Anon Key</label><input type="text" id="s-key" placeholder="eyJ…"></div>
-      <div class="error-msg" id="s-error" style="display:block;color:var(--text3);font-size:12px;margin-bottom:8px" id="s-status"></div>
-      <button class="btn accent full" onclick="updateCredentials()">Update connection</button>
-    </div>
-    <div class="form-section" style="margin-top:20px">
-      <div class="section-title">Data</div>
-      <button class="btn full" onclick="exportData()" style="margin-bottom:8px">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-        Export as JSON backup
-      </button>
-      <button class="btn ghost-danger full" onclick="disconnectSupabase()">Disconnect & reset</button>
-    </div>
-  </div>
+<!-- Settings Panel -->
+<div class="panel" id="panel-settings">
+<div class="form-section">
+<div class="section-title">Supabase connection</div>
+<div class="field"><label>Project URL</label><input type="text" id="s-url" placeholder="https://xxxxxxxxxxxx.supabase.co"></div>
+<div class="field"><label>Anon Key</label><input type="text" id="s-key" placeholder="eyJ…"></div>
+<div class="error-msg" id="s-error" style="display:block;color:var(--text3);font-size:12px;margin-bottom:8px" id="s-status"></div>
+<button class="btn accent full" onclick="updateCredentials()">Update connection</button>
+</div>
+<div class="form-section" style="margin-top:20px">
+<div class="section-title">Data</div>
+<button class="btn full" onclick="exportData()" style="margin-bottom:8px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+Export as JSON backup
+</button>
+<button class="btn ghost-danger full" onclick="disconnectSupabase()">Disconnect & reset</button>
+</div>
+</div>
 
 </div>
 
 <!-- Bottom Nav -->
 <nav class="bottom-nav">
-  <button class="nav-btn active" id="nav-browse" onclick="switchTab('browse')">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
-    Browse
-  </button>
-  <button class="nav-btn" id="nav-add" onclick="switchTab('add')">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12h14"/></svg>
-    Add
-  </button>
-  <button class="nav-btn" id="nav-settings" onclick="switchTab('settings')">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
-    Settings
-  </button>
+<button class="nav-btn active" id="nav-browse" onclick="switchTab('browse')">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+Browse
+</button>
+<button class="nav-btn" id="nav-add" onclick="switchTab('add')">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12h14"/></svg>
+Add
+</button>
+<button class="nav-btn" id="nav-settings" onclick="switchTab('settings')">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+Settings
+</button>
 </nav>
 
 <div class="toast" id="toast"></div>
@@ -337,292 +318,291 @@ let entries = [], allLevels = [], selectedLevels = new Set();
 
 /* ── Supabase helpers ── */
 async function supa(method, path, body) {
-  const res = await fetch(SUPA_URL + '/rest/v1/' + path, {
-    method,
-    headers: {
-      'apikey': SUPA_KEY,
-      'Authorization': 'Bearer ' + SUPA_KEY,
-      'Content-Type': 'application/json',
-      'Prefer': method === 'POST' ? 'return=representation' : 'return=representation'
-    },
-    body: body ? JSON.stringify(body) : undefined
-  });
-  if (!res.ok) throw new Error(await res.text());
-  return res.status === 204 ? null : res.json();
+const res = await fetch(SUPA_URL + '/rest/v1/' + path, {
+method,
+headers: {
+'apikey': SUPA_KEY,
+'Authorization': 'Bearer ' + SUPA_KEY,
+'Content-Type': 'application/json',
+'Prefer': method === 'POST' ? 'return=representation' : 'return=representation'
+},
+body: body ? JSON.stringify(body) : undefined
+});
+if (!res.ok) throw new Error(await res.text());
+return res.status === 204 ? null : res.json();
 }
 
 async function fetchAll() {
-  return supa('GET', 'entries?select=*&order=created_at.desc');
+return supa('GET', 'entries?select=*&order=created_at.desc');
 }
 
 /* ── Setup ── */
 async function connectSupabase() {
-  const url = document.getElementById('setup-url').value.trim().replace(/\/$/, '');
-  const key = document.getElementById('setup-key').value.trim();
-  const err = document.getElementById('setup-error');
-  err.style.display = 'none';
-  if (!url || !key) { err.textContent = 'Please enter both URL and key.'; err.style.display = 'block'; return; }
-  SUPA_URL = url; SUPA_KEY = key;
-  try {
-    await fetchAll();
-    localStorage.setItem('supa_url', url);
-    localStorage.setItem('supa_key', key);
-    document.getElementById('setup-screen').style.display = 'none';
-    init();
-  } catch(e) {
-    err.textContent = 'Could not connect. Please check your URL and key.';
-    err.style.display = 'block';
-  }
+const url = document.getElementById('setup-url').value.trim().replace(/\/$/, '');
+const key = document.getElementById('setup-key').value.trim();
+const err = document.getElementById('setup-error');
+err.style.display = 'none';
+if (!url || !key) { err.textContent = 'Please enter both URL and key.'; err.style.display = 'block'; return; }
+SUPA_URL = url; SUPA_KEY = key;
+try {
+await fetchAll();
+localStorage.setItem('supa_url', url);
+localStorage.setItem('supa_key', key);
+document.getElementById('setup-screen').style.display = 'none';
+init();
+} catch(e) {
+err.textContent = 'Could not connect. Please check your URL and key.';
+err.style.display = 'block';
+}
 }
 
 function loadFromStorage() {
-  const url = localStorage.getItem('supa_url');
-  const key = localStorage.getItem('supa_key');
-  if (url && key) {
-    document.getElementById('setup-url').value = url;
-    document.getElementById('setup-key').value = key;
-    connectSupabase();
-  } else {
-    showToast('No saved credentials found.');
-  }
+const url = localStorage.getItem('supa_url');
+const key = localStorage.getItem('supa_key');
+if (url && key) {
+document.getElementById('setup-url').value = url;
+document.getElementById('setup-key').value = key;
+connectSupabase();
+} else {
+showToast('No saved credentials found.');
+}
 }
 
 function disconnectSupabase() {
-  if (!confirm('This will clear your saved credentials. Your data in Supabase stays safe.')) return;
-  localStorage.removeItem('supa_url');
-  localStorage.removeItem('supa_key');
-  location.reload();
+if (!confirm('This will clear your saved credentials. Your data in Supabase stays safe.')) return;
+localStorage.removeItem('supa_url');
+localStorage.removeItem('supa_key');
+location.reload();
 }
 
 /* ── Init ── */
 async function init() {
-  document.getElementById('s-url').value = SUPA_URL;
-  document.getElementById('s-key').value = SUPA_KEY;
-  try {
-    entries = await fetchAll();
-    rebuildFilters();
-    applyFilters();
-    updateCount();
-  } catch(e) {
-    document.getElementById('results-list').innerHTML = `<div class="empty"><div class="empty-icon">⚠</div><div class="empty-title">Connection error</div><div class="empty-sub">Check your Supabase credentials in Settings.</div></div>`;
-  }
+document.getElementById('s-url').value = SUPA_URL;
+document.getElementById('s-key').value = SUPA_KEY;
+try {
+entries = await fetchAll();
+rebuildFilters();
+applyFilters();
+updateCount();
+} catch(e) {
+document.getElementById('results-list').innerHTML = `<div class="empty"><div class="empty-icon">⚠</div><div class="empty-title">Connection error</div><div class="empty-sub">Check your Supabase credentials in Settings.</div></div>`;
+}
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  if ('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js');
-  const url = localStorage.getItem('supa_url');
-  const key = localStorage.getItem('supa_key');
-  if (url && key) { SUPA_URL = url; SUPA_KEY = key; document.getElementById('setup-screen').style.display = 'none'; init(); }
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js');
+const url = localStorage.getItem('supa_url');
+const key = localStorage.getItem('supa_key');
+if (url && key) { SUPA_URL = url; SUPA_KEY = key; document.getElementById('setup-screen').style.display = 'none'; init(); }
 });
 
 /* ── UI helpers ── */
 function switchTab(name) {
-  ['browse','add','settings'].forEach(n => {
-    document.getElementById('panel-'+n).classList.toggle('active', n===name);
-    document.getElementById('nav-'+n).classList.toggle('active', n===name);
-  });
+['browse','add','settings'].forEach(n => {
+document.getElementById('panel-'+n).classList.toggle('active', n===name);
+document.getElementById('nav-'+n).classList.toggle('active', n===name);
+});
 }
 
 function updateCount() {
-  document.getElementById('count-pill').textContent = entries.length + (entries.length===1?' entry':' entries');
+document.getElementById('count-pill').textContent = entries.length + (entries.length===1?' entry':' entries');
 }
 
 function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'), 2200);
+const t = document.getElementById('toast');
+t.textContent = msg;
+t.classList.add('show');
+setTimeout(()=>t.classList.remove('show'), 2200);
 }
 
 /* ── Filters ── */
 function rebuildFilters() {
-  const subjects = [...new Set(entries.map(e=>e.subject).filter(Boolean))].sort();
-  const sel = document.getElementById('f-subject');
-  const cur = sel.value;
-  sel.innerHTML = `<option value="all">All subjects</option>` + subjects.map(s=>`<option value="${esc(s)}"${s===cur?' selected':''}>${esc(s)}</option>`).join('');
-  allLevels = [...new Set(entries.map(e=>e.level).filter(Boolean))].sort();
-  const wrap = document.getElementById('level-chips');
-  if (!allLevels.length) { wrap.innerHTML='<span style="font-size:12px;color:var(--text3)">No levels yet</span>'; return; }
-  wrap.innerHTML = ['All',...allLevels].map(l => {
-    const val = l==='All'?'all':l;
-    const on = l==='All' ? selectedLevels.size===0 : selectedLevels.has(l);
-    return `<span class="chip${on?' on':''}" onclick="toggleLevel('${esc(val)}')">${esc(l)}</span>`;
-  }).join('');
+const subjects = [...new Set(entries.map(e=>e.subject).filter(Boolean))].sort();
+const sel = document.getElementById('f-subject');
+const cur = sel.value;
+sel.innerHTML = `<option value="all">All subjects</option>` + subjects.map(s=>`<option value="${esc(s)}"${s===cur?' selected':''}>${esc(s)}</option>`).join('');
+allLevels = [...new Set(entries.map(e=>e.level).filter(Boolean))].sort();
+const wrap = document.getElementById('level-chips');
+if (!allLevels.length) { wrap.innerHTML='<span style="font-size:12px;color:var(--text3)">No levels yet</span>'; return; }
+wrap.innerHTML = ['All',...allLevels].map(l => {
+const val = l==='All'?'all':l;
+const on = l==='All' ? selectedLevels.size===0 : selectedLevels.has(l);
+return `<span class="chip${on?' on':''}" onclick="toggleLevel('${esc(val)}')">${esc(l)}</span>`;
+}).join('');
 }
 
 function toggleLevel(val) {
-  if (val==='all') selectedLevels.clear();
-  else { selectedLevels.has(val) ? selectedLevels.delete(val) : selectedLevels.add(val); }
-  rebuildFilters(); applyFilters();
+if (val==='all') selectedLevels.clear();
+else { selectedLevels.has(val) ? selectedLevels.delete(val) : selectedLevels.add(val); }
+rebuildFilters(); applyFilters();
 }
 
 let currentFiltered = [];
-
 function applyFilters() {
-  const subj = document.getElementById('f-subject').value;
-  const showP = document.getElementById('show-pronun').checked;
-  currentFiltered = entries.filter(e => {
-    if (subj !== 'all' && e.subject !== subj) return false;
-    if (selectedLevels.size > 0 && !selectedLevels.has(e.level)) return false;
-    return true;
-  });
-  shuffle(currentFiltered);
-  updateResultCount(currentFiltered.length);
-  renderList(currentFiltered, showP);
+const subj = document.getElementById('f-subject').value;
+const showP = document.getElementById('show-pronun').checked;
+currentFiltered = entries.filter(e => {
+if (subj !== 'all' && e.subject !== subj) return false;
+if (selectedLevels.size > 0 && !selectedLevels.has(e.level)) return false;
+return true;
+});
+shuffle(currentFiltered);
+updateResultCount(currentFiltered.length);
+renderList(currentFiltered, showP);
 }
 
 function shuffleAndRender() {
-  const showP = document.getElementById('show-pronun').checked;
-  shuffle(currentFiltered);
-  renderList(currentFiltered, showP);
-  showToast('Shuffled!');
+const showP = document.getElementById('show-pronun').checked;
+shuffle(currentFiltered);
+renderList(currentFiltered, showP);
+showToast('Shuffled!');
 }
 
 function shuffle(arr) {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
+for (let i = arr.length - 1; i > 0; i--) {
+const j = Math.floor(Math.random() * (i + 1));
+[arr[i], arr[j]] = [arr[j], arr[i]];
+}
 }
 
 function updateResultCount(n) {
-  const el = document.getElementById('result-count');
-  if (el) el.textContent = n + (n===1?' character':' characters');
+const el = document.getElementById('result-count');
+if (el) el.textContent = n + (n===1?' character':' characters');
 }
 
 /* ── Render ── */
 function renderList(list, showPronun) {
-  const el = document.getElementById('results-list');
-  if (!list.length) {
-    el.innerHTML = `<div class="empty"><div class="empty-icon">語</div><div class="empty-title">${entries.length?'No matches':'No entries yet'}</div><div class="empty-sub">${entries.length?'Try adjusting your filters.':'Tap + Add to get started.'}</div></div>`;
-    return;
-  }
-  el.innerHTML = list.map(e => `
-  <div class="entry-card" id="card-${e.id}">
-    <div class="view-content">
-      <div class="char">${esc(e.character)}</div>
-      ${showPronun && e.pronunciation ? `<div class="pronun">${esc(e.pronunciation)}</div>` : ''}
-      <div class="badges">
-        <span class="badge">${esc(e.subject)}</span>
-        <span class="badge">${esc(e.level)}</span>
-        <span class="badge">${esc(e.lesson)}</span>
-      </div>
-      ${e.notes ? `<div class="notes-text">${esc(e.notes)}</div>` : ''}
-      <div class="card-actions">
-        <button class="btn" onclick="startEdit('${e.id}')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-          Edit
-        </button>
-        <button class="btn ghost-danger" onclick="deleteEntry('${e.id}')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 6h18M19 6l-1 14H6L5 6M10 11v6M14 11v6M9 6V4h6v2"/></svg>
-        </button>
-      </div>
-    </div>
-    <div class="edit-inline" style="display:none">
-      <div class="field"><label>Subject</label><input type="text" id="e-subject-${e.id}" value="${esc(e.subject)}"></div>
-      <div class="field"><label>Level</label><input type="text" id="e-level-${e.id}" value="${esc(e.level)}"></div>
-      <div class="field"><label>Lesson</label><input type="text" id="e-lesson-${e.id}" value="${esc(e.lesson)}"></div>
-      <div class="field"><label>Character</label><input type="text" id="e-char-${e.id}" value="${esc(e.character)}"></div>
-      <div class="field"><label>Pronunciation</label><input type="text" id="e-pronun-${e.id}" value="${esc(e.pronunciation||'')}"></div>
-      <div class="field"><label>Notes</label><textarea id="e-notes-${e.id}">${esc(e.notes||'')}</textarea></div>
-      <div class="card-actions">
-        <button class="btn accent" onclick="saveEdit('${e.id}')">Save</button>
-        <button class="btn" onclick="cancelEdit('${e.id}')">Cancel</button>
-      </div>
-    </div>
-  </div>`).join('');
+const el = document.getElementById('results-list');
+if (!list.length) {
+el.innerHTML = `<div class="empty"><div class="empty-icon">語</div><div class="empty-title">${entries.length?'No matches':'No entries yet'}</div><div class="empty-sub">${entries.length?'Try adjusting your filters.':'Tap + Add to get started.'}</div></div>`;
+return;
+}
+el.innerHTML = list.map(e => `
+<div class="entry-card" id="card-${e.id}">
+<div class="view-content">
+<div class="char">${esc(e.character)}</div>
+${showPronun && e.pronunciation ? `<div class="pronun">${esc(e.pronunciation)}</div>` : ''}
+<div class="badges">
+<span class="badge">${esc(e.subject)}</span>
+<span class="badge">${esc(e.level)}</span>
+<span class="badge">${esc(e.lesson)}</span>
+</div>
+${e.notes ? `<div class="notes-text">${esc(e.notes)}</div>` : ''}
+<div class="card-actions">
+<button class="btn" onclick="startEdit('${e.id}')">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+Edit
+</button>
+<button class="btn ghost-danger" onclick="deleteEntry('${e.id}')">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 6h18M19 6l-1 14H6L5 6M10 11v6M14 11v6M9 6V4h6v2"/></svg>
+</button>
+</div>
+</div>
+<div class="edit-inline" style="display:none">
+<div class="field"><label>Subject</label><input type="text" id="e-subject-${e.id}" value="${esc(e.subject)}"></div>
+<div class="field"><label>Level</label><input type="text" id="e-level-${e.id}" value="${esc(e.level)}"></div>
+<div class="field"><label>Lesson</label><input type="text" id="e-lesson-${e.id}" value="${esc(e.lesson)}"></div>
+<div class="field"><label>Character</label><input type="text" id="e-char-${e.id}" value="${esc(e.character)}"></div>
+<div class="field"><label>Pronunciation</label><input type="text" id="e-pronun-${e.id}" value="${esc(e.pronunciation||'')}"></div>
+<div class="field"><label>Notes</label><textarea id="e-notes-${e.id}">${esc(e.notes||'')}</textarea></div>
+<div class="card-actions">
+<button class="btn accent" onclick="saveEdit('${e.id}')">Save</button>
+<button class="btn" onclick="cancelEdit('${e.id}')">Cancel</button>
+</div>
+</div>
+</div>`).join('');
 }
 
 function esc(s='') { return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
 /* ── CRUD ── */
 async function addEntry() {
-  const g = id => document.getElementById(id).value.trim();
-  const subject=g('a-subject'), level=g('a-level'), lesson=g('a-lesson'), character=g('a-char');
-  const dupEl = document.getElementById('dup-warning');
-  const dupText = document.getElementById('dup-warning-text');
-  dupEl.classList.remove('show');
-  if (!subject||!level||!lesson||!character) { showToast('Subject, Level, Lesson & Character are required'); return; }
-  const dup = entries.find(e => e.character.trim() === character && e.subject.trim() === subject && e.level.trim() === level);
-  if (dup) {
-    dupText.textContent = `"${character}" already exists in ${subject} ${level} (${dup.lesson}).`;
-    dupEl.classList.add('show');
-    document.getElementById('a-char').focus();
-    return;
-  }
-  try {
-    const [row] = await supa('POST', 'entries', {subject, level, lesson, character, pronunciation:g('a-pronun'), notes:g('a-notes')});
-    entries.unshift(row);
-    clearForm(); rebuildFilters(); applyFilters(); updateCount();
-    const banner = document.getElementById('add-success');
-    banner.classList.add('show');
-    setTimeout(() => banner.classList.remove('show'), 3000);
-  } catch(e) { showToast('Error saving. Check connection.'); }
+const g = id => document.getElementById(id).value.trim();
+const subject=g('a-subject'), level=g('a-level'), lesson=g('a-lesson'), character=g('a-char');
+const dupEl = document.getElementById('dup-warning');
+const dupText = document.getElementById('dup-warning-text');
+dupEl.classList.remove('show');
+if (!subject||!level||!lesson||!character) { showToast('Subject, Level, Lesson & Character are required'); return; }
+const dup = entries.find(e => e.character.trim() === character && e.subject.trim() === subject && e.level.trim() === level);
+if (dup) {
+dupText.textContent = `"${character}" already exists in ${subject} ${level} (${dup.lesson}).`;
+dupEl.classList.add('show');
+document.getElementById('a-char').focus();
+return;
+}
+try {
+const [row] = await supa('POST', 'entries', {subject, level, lesson, character, pronunciation:g('a-pronun'), notes:g('a-notes')});
+entries.unshift(row);
+clearForm(); rebuildFilters(); applyFilters(); updateCount();
+const banner = document.getElementById('add-success');
+banner.classList.add('show');
+setTimeout(() => banner.classList.remove('show'), 3000);
+} catch(e) { showToast('Error saving. Check connection.'); }
 }
 
 function clearForm() {
-  ['a-subject','a-level','a-lesson','a-char','a-pronun','a-notes'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('dup-warning').classList.remove('show');
+['a-subject','a-level','a-lesson','a-char','a-pronun','a-notes'].forEach(id=>document.getElementById(id).value='');
+document.getElementById('dup-warning').classList.remove('show');
 }
 
 function startEdit(id) {
-  document.querySelectorAll('.entry-card').forEach(c => {
-    c.querySelector('.view-content').style.display = 'block';
-    c.querySelector('.edit-inline').style.display = 'none';
-    c.classList.remove('editing');
-  });
-  const card = document.getElementById('card-'+id);
-  card.querySelector('.view-content').style.display = 'none';
-  card.querySelector('.edit-inline').style.display = 'block';
-  card.classList.add('editing');
+document.querySelectorAll('.entry-card').forEach(c => {
+c.querySelector('.view-content').style.display = 'block';
+c.querySelector('.edit-inline').style.display = 'none';
+c.classList.remove('editing');
+});
+const card = document.getElementById('card-'+id);
+card.querySelector('.view-content').style.display = 'none';
+card.querySelector('.edit-inline').style.display = 'block';
+card.classList.add('editing');
 }
 
 function cancelEdit(id) {
-  const card = document.getElementById('card-'+id);
-  card.querySelector('.view-content').style.display = 'block';
-  card.querySelector('.edit-inline').style.display = 'none';
-  card.classList.remove('editing');
+const card = document.getElementById('card-'+id);
+card.querySelector('.view-content').style.display = 'block';
+card.querySelector('.edit-inline').style.display = 'none';
+card.classList.remove('editing');
 }
 
 async function saveEdit(id) {
-  const g = f => document.getElementById(`e-${f}-${id}`).value.trim();
-  const subject=g('subject'), level=g('level'), lesson=g('lesson'), character=g('char');
-  if (!subject||!level||!lesson||!character) { showToast('Required fields missing'); return; }
-  try {
-    await supa('PATCH', `entries?id=eq.${id}`, {subject, level, lesson, character, pronunciation:g('pronun'), notes:g('notes')});
-    const idx = entries.findIndex(e=>e.id===id);
-    if (idx>-1) entries[idx] = {...entries[idx], subject, level, lesson, character, pronunciation:g('pronun'), notes:g('notes')};
-    rebuildFilters(); applyFilters(); updateCount(); showToast('Updated!');
-  } catch(e) { showToast('Error updating. Check connection.'); }
+const g = f => document.getElementById(`e-${f}-${id}`).value.trim();
+const subject=g('subject'), level=g('level'), lesson=g('lesson'), character=g('char');
+if (!subject||!level||!lesson||!character) { showToast('Required fields missing'); return; }
+try {
+await supa('PATCH', `entries?id=eq.${id}`, {subject, level, lesson, character, pronunciation:g('pronun'), notes:g('notes')});
+const idx = entries.findIndex(e=>e.id===id);
+if (idx>-1) entries[idx] = {...entries[idx], subject, level, lesson, character, pronunciation:g('pronun'), notes:g('notes')};
+rebuildFilters(); applyFilters(); updateCount(); showToast('Updated!');
+} catch(e) { showToast('Error updating. Check connection.'); }
 }
 
 async function deleteEntry(id) {
-  if (!confirm('Delete this entry?')) return;
-  try {
-    await supa('DELETE', `entries?id=eq.${id}`, null);
-    entries = entries.filter(e=>e.id!==id);
-    rebuildFilters(); applyFilters(); updateCount(); showToast('Deleted.');
-  } catch(e) { showToast('Error deleting. Check connection.'); }
+if (!confirm('Delete this entry?')) return;
+try {
+await supa('DELETE', `entries?id=eq.${id}`, null);
+entries = entries.filter(e=>e.id!==id);
+rebuildFilters(); applyFilters(); updateCount(); showToast('Deleted.');
+} catch(e) { showToast('Error deleting. Check connection.'); }
 }
 
 async function updateCredentials() {
-  const url = document.getElementById('s-url').value.trim().replace(/\/$/, '');
-  const key = document.getElementById('s-key').value.trim();
-  SUPA_URL = url; SUPA_KEY = key;
-  try {
-    await fetchAll();
-    localStorage.setItem('supa_url', url);
-    localStorage.setItem('supa_key', key);
-    showToast('Credentials updated!'); init();
-  } catch(e) { showToast('Connection failed. Please check credentials.'); }
+const url = document.getElementById('s-url').value.trim().replace(/\/$/, '');
+const key = document.getElementById('s-key').value.trim();
+SUPA_URL = url; SUPA_KEY = key;
+try {
+await fetchAll();
+localStorage.setItem('supa_url', url);
+localStorage.setItem('supa_key', key);
+showToast('Credentials updated!'); init();
+} catch(e) { showToast('Connection failed. Please check credentials.'); }
 }
 
 function exportData() {
-  const blob = new Blob([JSON.stringify(entries, null, 2)], {type:'application/json'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'langlearn-backup-' + new Date().toISOString().slice(0,10) + '.json';
-  a.click();
+const blob = new Blob([JSON.stringify(entries, null, 2)], {type:'application/json'});
+const a = document.createElement('a');
+a.href = URL.createObjectURL(blob);
+a.download = 'langlearn-backup-' + new Date().toISOString().slice(0,10) + '.json';
+a.click();
 }
 </script>
 </body>
